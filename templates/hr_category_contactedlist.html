@@ -4,7 +4,7 @@
     .dropdown-item:hover {
         color: #f4f4f8;
     }
-
+    
     td,
     th {
         text-align: center;
@@ -19,8 +19,7 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                 <form>
                     <div class="input-group input-group-sm mb-3">
-                        <input type="text" class="form-control text-white" id="myInput" onkeyup="myFunction()"
-                            placeholder="Search . . ." style="border: green" />
+                        <input type="text" class="form-control text-white" id="myInput" onkeyup="myFunction()" placeholder="Search . . ." style="border: green" />
                     </div>
                 </form>
             </div>
@@ -32,17 +31,17 @@
                             <!-- <th></th> -->
                             <th class="text-white">Name</th>
                             <th class="text-white">Email</th>
-                            <th class="text-white">contact</th>    
-                            <th class="text-white">Date</th>                         
+                            <th class="text-white">contact</th>
+                            <th class="text-white">Date</th>
+                            <th class="text-white">Department</th>
                             <th class="text-white">Mark</th>
                             <th class="text-white">action</th>
 
                         </tr>
                     </thead>
                     <tbody>
-                        {% if m %}
-                        {% for i in m %}
-                        
+                        {% if m %} {% for i in m %}
+
                         <tr>
                             <td>
                                 {{forloop.counter}}
@@ -50,37 +49,39 @@
                             <!-- <td >                               
                                 </td> -->
                             <td>
-                              {{i.username}}
+                                {{i.username}}
                             </td>
-                            <td >{{i.email}}</td>
-                            <td >
+                            <td>{{i.email}}</td>
+                            <td>
                                 {{i.contact_no}}
-                            </td >
-                            <td >
-                                {{i.regdate|date:"d-m-Y"}}
-                            </td >
-                            <td>
-                               {{i.mark}}
                             </td>
                             <td>
-                               
-                                <a href="/replaysaveintrest/?tid={{i.id}}" class="btn btn-outline-success btn-icon-text" >
+                                {{i.deptmnt.name}}
+                            </td>
+                            <td>
+                                {{i.regdate|date:"d-m-Y"}}
+                            </td>
+                            <td>
+                                {{i.mark}}
+                            </td>
+                            <td>
+
+                                <a href="/replaysaveintrest/?tid={{i.id}}" class="btn btn-outline-success btn-icon-text">
                                     <i class="mdi mdi-emoticon btn-icon-prepend"></i> Intrested
                                 </a>
-                                <a href="/replaysavenotintrest/?tid={{i.id}}" class="btn btn-outline-danger btn-icon-text" >
+                                <a href="/replaysavenotintrest/?tid={{i.id}}" class="btn btn-outline-danger btn-icon-text">
                                     <i class="mdi mdi-emoticon-dead btn-icon-prepend"></i> Not Intrested
                                 </a>
-                                
-                                
-                            </td>     
+
+
+                            </td>
                         </tr>
-                         
-                        {% endfor %}
-                        {% else %}
+
+                        {% endfor %} {% else %}
                         <h5>Nothing to display...</h5>
                         {% endif %}
-                        
-                        
+
+
 
                     </tbody>
                 </table>
@@ -90,8 +91,6 @@
 </div>
 
 <script>
-
-
     function myFunction() {
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById("myInput");
@@ -113,4 +112,3 @@
 </script>
 
 {% endblock %}
-

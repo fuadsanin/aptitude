@@ -32,6 +32,7 @@
                             <th class="text-white">Name</th>
                             <th class="text-white">Email</th>
                             <th class="text-white">contact</th>
+                            <th class="text-white">Department</th>
                             <th class="text-white">Date</th>
                             <th class="text-white">Mark</th>
                             <th class="text-white">action</th>
@@ -52,6 +53,9 @@
                             <td>{{i.email}}</td>
                             <td>
                                 {{i.contact_no}}
+                            </td>
+                            <td>
+                                {{i.deptmnt.name}}
                             </td>
                             <td>
                                 {{i.regdate|date:"d-m-Y"}}

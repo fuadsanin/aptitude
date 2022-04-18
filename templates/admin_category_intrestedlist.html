@@ -4,7 +4,7 @@
     .dropdown-item:hover {
         color: #f4f4f8;
     }
-
+    
     td,
     th {
         text-align: center;
@@ -19,8 +19,7 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                 <form>
                     <div class="input-group input-group-sm mb-3">
-                        <input type="text" class="form-control text-white" id="myInput" onkeyup="myFunction()"
-                            placeholder="Search . . ." style="border: green" />
+                        <input type="text" class="form-control text-white" id="myInput" onkeyup="myFunction()" placeholder="Search . . ." style="border: green" />
                     </div>
                 </form>
             </div>
@@ -32,8 +31,9 @@
                             <!-- <th></th> -->
                             <th class="text-white">Name</th>
                             <th class="text-white">Email</th>
-                            <th class="text-white">contact</th> 
-                            <th class="text-white">Date</th>                            
+                            <th class="text-white">contact</th>
+                            <th class="text-white">Department</th>
+                            <th class="text-white">Date</th>
                             <th class="text-white">Mark</th>
 
                         </tr>
@@ -47,20 +47,23 @@
                             <!-- <td >                               
                                 </td> -->
                             <td>
-                              {{i.username}}
+                                {{i.username}}
                             </td>
-                            <td >{{i.email}}</td>
-                            <td >
-                                {{i.contact_no}}
-                            </td >
-                            <td >
-                                3/3/2022
-                            </td >
+                            <td>{{i.email}}</td>
                             <td>
-                               {{i.mark}}
+                                {{i.contact_no}}
+                            </td>
+                            <td>
+                                {{i.deptmnt.name}}
+                            </td>
+                            <td>
+                                3/3/2022
+                            </td>
+                            <td>
+                                {{i.mark}}
                             </td>
                         </tr>
-                            
+
                         {% endfor %}
 
                     </tbody>
@@ -71,8 +74,6 @@
 </div>
 
 <script>
-
-
     function myFunction() {
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById("myInput");
@@ -94,15 +95,14 @@
 </script>
 {% if msg_success %}
 <script>
-  Swal.fire({
-    position: 'center',
-    icon: 'success',
-    text: '{{ msg_success }}',
-    showConfirmButton: false,
-    timer: 1500
-  }).then(function () {
-    javascript: history.go(-2);
-  })
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        text: '{{ msg_success }}',
+        showConfirmButton: false,
+        timer: 1500
+    }).then(function() {
+        javascript: history.go(-2);
+    })
 </script>
-{% endif %}
-{% endblock %}
+{% endif %} {% endblock %}

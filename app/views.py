@@ -585,7 +585,7 @@ def contactsave(request):
       else:
         usernamehr1 = "dummy"
       mem = login.objects.filter(
-        designation_id=usernamehr) .filter(fullname=usernamehr1)   
+        designation_id=usernamehr).filter(fullname=usernamehr1)   
       m=candidates.objects.filter(reference = usernamehr1)
       tid=request.GET.get('tid')
       con=candidates.objects.get(id=tid)
@@ -599,7 +599,7 @@ def contactsave(request):
       return redirect('/')      
 
 
-def hr_category_contactedlist(request):
+def hr_category_contactedlist(request, pk):
  if 'usernamehr2' in request.session:
       if request.session.has_key('usernamehr'):
         usernamehr = request.session['usernamehr']
@@ -609,7 +609,7 @@ def hr_category_contactedlist(request):
         usernamehr1 = "dummy"
       mem = login.objects.filter(
         designation_id=usernamehr) .filter(fullname=usernamehr1)   
-      m=candidates.objects.filter(reference =usernamehr1,contact_status=1)
+      m=candidates.objects.filter(reference =usernamehr1,deptmnt_id=pk, contact_status=1)
       
       return render(request, 'hr_category_contactedlist.html', {'m':m, 'mem':mem})
  else:
@@ -626,7 +626,7 @@ def replaysaveintrest(request):
         usernamehr1 = "dummy"
       mem = login.objects.filter(
         designation_id=usernamehr) .filter(fullname=usernamehr1)   
-      m=candidates.objects.filter(reference =usernamehr1)
+      m=candidates.objects.filter(reference = usernamehr1)
       tid=request.GET.get('tid')
       con=candidates.objects.get(id=tid)      
       con.replay_status=1
@@ -660,7 +660,7 @@ def replaysavenotintrest(request):
       return redirect('/')      
 
 
-def hr_category_intrestedlist(request):
+def hr_category_intrestedlist(request,pk):
  if 'usernamehr2' in request.session:
       if request.session.has_key('usernamehr'):
         usernamehr = request.session['usernamehr']
@@ -670,12 +670,13 @@ def hr_category_intrestedlist(request):
         usernamehr1 = "dummy"
       mem = login.objects.filter(
         designation_id=usernamehr) .filter(fullname=usernamehr1)   
-      m=candidates.objects.filter(reference = usernamehr1,replay_status=1)
+      m=candidates.objects.filter(reference = usernamehr1,deptmnt_id=pk,replay_status=1)
       return render(request, 'hr_category_intrestedlist.html', {'m':m, 'mem':mem})
  else:
       return redirect('/')
 
-def hr_category_rejectedlist(request):
+
+def hr_category_rejectedlist(request, pk):
  if 'usernamehr2' in request.session:
       if request.session.has_key('usernamehr'):
         usernamehr = request.session['usernamehr']
@@ -685,23 +686,23 @@ def hr_category_rejectedlist(request):
         usernamehr1 = "dummy"
       mem = login.objects.filter(
         designation_id=usernamehr) .filter(fullname=usernamehr1)   
-      m=candidates.objects.filter(reference = usernamehr1,replay_status=2)
+      m=candidates.objects.filter(reference = usernamehr1,deptmnt_id=pk,replay_status=2)
       return render(request, 'hr_category_rejectedlist.html', {'m':m, 'mem':mem})
  else:
       return redirect('/')
 
 
-def hr_category_history(request):
+def hr_category_history(request, pk):
  if 'usernamehr2' in request.session:
       if request.session.has_key('usernamehr'):
         usernamehr = request.session['usernamehr']
       if request.session.has_key('usernamehr1'):
         usernamehr1 = request.session['usernamehr1']
-      else:
-        usernamehr1 = "dummy"
+      else:  
+        usernamehr1 = "dummy" 
       mem = login.objects.filter(
         designation_id=usernamehr) .filter(fullname = usernamehr1)   
-      m=candidates.objects.filter(reference = usernamehr1 ).exclude(replay_status=0)      
+      m=candidates.objects.filter(reference = usernamehr1, deptmnt_id=pk).exclude(replay_status=0)       
       return render(request, 'hr_category_history.html', {'m':m, 'mem':mem})
  else:
       return redirect('/')
@@ -729,7 +730,8 @@ def admin_allMembers_category(request, pk, id):
 
 def admin_category_newlist(request,pk, id):
       var = login.objects.get(id=id) 
-      mem = User.objects.all()              
+      mem = User.objects.all()
+                 
       m = candidates.objects.filter(reference = var.fullname, deptmnt_id=pk, contact_status=0)
       return render(request,'admin_category_newlist.html',{'mem':mem, 'm':m })
 
@@ -744,11 +746,11 @@ def admin_contactsave(request):
       msg_success = "contacted"
       return render(request,'admin_category_newlist.html',{'mem':mem,'msg_success':msg_success})
 
-def admin_category_contactedlist(request,id):
-      var = login.objects.get(id=id)
-      mem = User.objects.all()
-      m=candidates.objects.filter(reference = var.fullname, contact_status=1)
-      return render(request,'admin_category_contactedlist.html',{'mem':mem , 'm':m})
+def admin_category_contactedlist(request,pk,id):  
+      var = login.objects.get(id=id)  
+      mem = User.objects.all()  
+      m=candidates.objects.filter(reference = var.fullname, deptmnt_id=pk, contact_status=1)  
+      return render(request,'admin_category_contactedlist.html',{'mem':mem , 'm':m})  
 
 def admin_contactsave1(request):
       tid=request.GET.get('tid')
@@ -775,22 +777,22 @@ def admin_contactsave2(request):
       return render(request, 'admin_category_contactedlist.html',{'mem':mem,'msg_success':msg_success})
 
 
-def admin_category_history(request,id):
+def admin_category_history(request,pk, id):
       var = login.objects.get(id=id)
       mem = User.objects.all()
-      m = candidates.objects.filter(reference = var.fullname).exclude(replay_status=0)
+      m = candidates.objects.filter(reference = var.fullname, deptmnt_id=pk).exclude(replay_status=0)
       return render(request,'admin_category_history.html',{'mem':mem , 'm':m})
 
-def admin_category_intrestedlist(request,id):
+def admin_category_intrestedlist(request,pk, id):
       var = login.objects.get(id=id)
       mem = User.objects.all()
-      m=candidates.objects.filter(reference = var.fullname, replay_status=1)
+      m=candidates.objects.filter(reference = var.fullname,deptmnt_id=pk, replay_status=1)
       return render(request,'admin_category_intrestedlist.html',{'mem':mem ,'m':m})
       
-def admin_category_rejectedlist(request,id):
+def admin_category_rejectedlist(request, pk, id):
       var = login.objects.get(id=id)
       mem = User.objects.all()
-      m=candidates.objects.filter(reference = var.fullname, replay_status=2)
+      m=candidates.objects.filter(reference = var.fullname, deptmnt_id=pk, replay_status=2)
       return render(request,'admin_category_rejectedlist.html',{'mem':mem , 'm':m})
 
 def admin_department(request):
