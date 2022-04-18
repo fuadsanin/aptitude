@@ -1,0 +1,114 @@
+{%extends 'admin_index.html'%}{% load static %}{% block content %}
+<div class="row" style="padding-top: 20px">
+    <div class=" col-12 col-sm-4 col-md-4 col-lg-4 grid-margin">
+        <a href="/admin_category_newlist/{{mm.id}}/{{var.id}}" style="text-decoration: none">
+            <div class="card" style="height: 180px">
+
+                <div class="card-body">
+
+                    <div class="row" style="padding-top: 50px">
+                        <div class="col-8 col-sm-8 col-md-8 col-lg-8  my-auto">
+                            <div class="d-flex d-sm-block d-md-flex align-items-center">
+                                <h3 class="mb-0" style="color: white">New List</h3>
+                            </div>
+                        </div>
+                        <div class="col-4 col-4 col-sm-4 col-md-4 col-lg-4  text-center text-xl-right">
+                            <h3 class="mb-0" style="color: white">{{cnt1}}</h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </a>
+    </div>
+    <div class="col-12 col-sm-4 col-md-4 col-lg-4 grid-margin">
+        <a href="/admin_category_contactedlist/{{var.id}}/" style="text-decoration: none">
+            <div class="card" style="height: 180px">
+
+                <div class="card-body">
+
+                    <div class="row" style="padding-top: 50px">
+                        <div class="col-8 col-sm-8 col-md-8 col-lg-8  my-auto">
+                            <div class="d-flex d-sm-block d-md-flex align-items-center">
+                                <h3 class="mb-0" style="color: white">Contacted List</h3>
+                            </div>
+                        </div>
+                        <div class="col-4 col-4 col-sm-4 col-md-4 col-lg-4  text-center text-xl-right">
+                            <h3 class="mb-0" style="color: white">{{cnt2}}</h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </a>
+    </div>
+
+    <div class=" col-12 col-sm-4 col-md-4 col-lg-4 grid-margin">
+        <a href="/admin_category_intrestedlist/{{var.id}}/" style="text-decoration: none">
+            <div class="card" style="height: 180px">
+
+                <div class="card-body">
+
+                    <div class="row" style="padding-top: 50px">
+                        <div class="col-8 col-sm-8 col-md-8 col-lg-8 my-auto">
+                            <div class="d-flex d-sm-block d-md-flex align-items-center">
+                                <h3 class="mb-0" style="color: white">Intrested List</h3>
+                            </div>
+                        </div>
+                        <div class="col-4 col-4 col-sm-4 col-md-4 col-lg-4  text-center text-xl-right">
+                            <h3 class="mb-0" style="color: white">{{cnt4}}</h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </a>
+    </div>
+    <div class="col-12 col-sm-4 col-md-4 col-lg-4 grid-margin">
+        <a href="/admin_category_rejectedlist/{{var.id}}/" style="text-decoration: none">
+            <div class="card" style="height: 180px">
+
+                <div class="card-body">
+
+                    <div class="row" style="padding-top: 50px">
+                        <div class="col-8 col-sm-8 col-md-8 col-lg-8  my-auto">
+                            <div class="d-flex d-sm-block d-md-flex align-items-center">
+                                <h3 class="mb-0" style="color: white">Rejected List</h3>
+                            </div>
+                        </div>
+                        <div class="col-4 col-4 col-sm-4 col-md-4 col-lg-4  text-center text-xl-right">
+                            <h3 class="mb-0" style="color: white">{{cnt5}}</h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </a>
+    </div>
+
+    <div class=" col-12 col-sm-4 col-md-4 col-lg-4 grid-margin">
+        <a href="/admin_category_history/{{var.id}}/" style="text-decoration: none">
+            <div class="card" style="height: 180px">
+
+                <div class="card-body">
+
+                    <div class="row" style="padding-top: 50px">
+                        <div class="col-8 col-sm-8 col-md-8 col-lg-8  my-auto">
+                            <div class="d-flex d-sm-block d-md-flex align-items-center">
+                                <h3 class="mb-0" style="color: white">History</h3>
+                            </div>
+                        </div>
+                        <div class="col-4 col-4 col-sm-4 col-md-4 col-lg-4  text-center text-xl-right">
+                            <h3 class="mb-0" style="color: white">{{cnt3}}</h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </a>
+    </div>
+
+
+</div>
+
+{% endblock %}
